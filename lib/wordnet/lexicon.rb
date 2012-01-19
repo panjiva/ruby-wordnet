@@ -40,7 +40,7 @@ class WordNet::Lexicon
 			datadir = Pathname( Gem.datadir('wordnet-defaultdb') )
 		else
 			WordNet.log.warn "  no defaultdb gem; looking for the development database"
-			datadir = Pathname( __FILE__ ).dirname.parent.parent +
+			datadir = ENV['WORDNET_DB'] || Pathname( __FILE__ ).dirname.parent.parent +
 				'wordnet-defaultdb/data/wordnet-defaultdb'
 		end
 
@@ -51,7 +51,7 @@ class WordNet::Lexicon
 			return "sqlite:#{dbfile}"
 		else
 			raise WordNet::LexiconError,
-				"No default WordNetSQL database! You can install it via the " +
+				"No default WordNetSQL database found at #{datadir}! You can install it via the " +
 				"wordnet-defaultdb gem, or download a version yourself from " +
 				"http://sourceforge.net/projects/wnsql/"
 		end
