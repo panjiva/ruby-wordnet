@@ -43,7 +43,7 @@ hoespec = Hoe.spec( 'wordnet' ) do
 
 	}.gsub( /^\t/, '' )
 
-	self.require_ruby_version( '>=1.9.2' )
+	#self.require_ruby_version( '>=1.9.2' )
 
 	self.hg_sign_tags = true if self.respond_to?( :hg_sign_tags )
 end
