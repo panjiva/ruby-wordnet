@@ -40,7 +40,7 @@ class WordNet::Lexicon
 			datadir = Pathname( Gem.datadir('wordnet-defaultdb') )
 		else
 			WordNet.log.warn "  no defaultdb gem; looking for the development database"
-			datadir = ENV['WORDNET_DB'] || Pathname( __FILE__ ).dirname.parent.parent +
+			datadir = Pathname(ENV['WORDNET_DB']) || Pathname( __FILE__ ).dirname.parent.parent +
 				'wordnet-defaultdb/data/wordnet-defaultdb'
 		end
 
