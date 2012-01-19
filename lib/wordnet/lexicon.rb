@@ -38,16 +38,18 @@ class WordNet::Lexicon
 		datadir = nil
 		if Gem.datadir( 'wordnet-defaultdb' )
 			datadir = Pathname( Gem.datadir('wordnet-defaultdb') )
-		else
+    elsif ENV['WORDNET_DB']
 			WordNet.log.warn "  no defaultdb gem; looking for the development database"
-			datadir = Pathname(ENV['WORDNET_DB']) || Pathname( __FILE__ ).dirname.parent.parent +
-				'wordnet-defaultdb/data/wordnet-defaultdb'
-		end
+			datadir = Pathname(ENV['WORDNET_DB'])
+    end
 
-		dbfile = datadir + 'wordnet30.sqlite'
-		WordNet.log.debug "  dbfile is: %s" % [ dbfile ]
+    dbfile = nil
+    if datadir
+      dbfile = datadir + 'wordnet30.sqlite'
+      WordNet.log.debug "  dbfile is: %s" % [ dbfile ]
+    end
 
-		if dbfile.exist?
+		if dbfile && dbfile.exist?
 			return "sqlite:#{dbfile}"
 		else
 			raise WordNet::LexiconError,
