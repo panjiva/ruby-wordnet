@@ -2,6 +2,20 @@
 
 * http://deveiate.org/projects/Ruby-WordNet
 
+== Installation
+
+    > rake newb
+    > rake package
+    > rake install_gem
+    > cd wordnet-defaultdb
+    > rake newb
+    > rake package
+    > rake install_gem
+
+== Running
+
+    > WORDNET='/path/to/folder/containing/db' irb
+
 == Description
 
 This library is a Ruby interface to WordNet®. WordNet® is an online lexical
